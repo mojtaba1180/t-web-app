@@ -1,17 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { useThemeParams } from '@vkruglikov/react-telegram-web-app';
-import { ConfigProvider, theme } from 'antd';
-import 'antd/dist/reset.css';
+import { useThemeParams } from "@vkruglikov/react-telegram-web-app";import { ConfigProvider, theme } from "antd";
+import "antd/dist/reset.css";
+import ReactDOM from "react-dom/client";
 
-import './index.css';
-import logo from './logo.svg';
+import "./index.css";
+import logo from "./logo.svg";
 
-import MainButtonDemo from './MainButtonDemo';
-import BackButtonDemo from './BackButtonDemo';
-import ShowPopupDemo from './ShowPopupDemo';
-import HapticFeedbackDemo from './HapticFeedbackDemo';
-import ScanQrPopupDemo from './ScanQrPopupDemo';
+import BackButtonDemo from "./components/BackButtonDemo";
+import HapticFeedbackDemo from "./components/HapticFeedbackDemo";
+import MainButtonDemo from "./components/MainButtonDemo";
+import ScanQrPopupDemo from "./components/ScanQrPopupDemo";
+import ShowPopupDemo from "./components/ShowPopupDemo";
 
 const DemoApp = () => {
   const [colorScheme, themeParams] = useThemeParams();
@@ -23,7 +21,7 @@ const DemoApp = () => {
           themeParams.text_color
             ? {
                 algorithm:
-                  colorScheme === 'dark'
+                  colorScheme === "dark"
                     ? theme.darkAlgorithm
                     : theme.defaultAlgorithm,
                 token: {
@@ -33,16 +31,22 @@ const DemoApp = () => {
                 },
               }
             : undefined
-        }
-      >
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        }>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
         </header>
-        <div className="contentWrapper">
+        <div className='contentWrapper'>
+          <input
+            type='file'
+            className='changeimage'
+            id='changeimage'
+            accept='image/*'
+          />
           <MainButtonDemo />
           <BackButtonDemo />
           <ShowPopupDemo />
           <HapticFeedbackDemo />
+
           <ScanQrPopupDemo />
         </div>
       </ConfigProvider>
@@ -51,7 +55,7 @@ const DemoApp = () => {
 };
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
+  document.getElementById("root") as HTMLElement,
 );
 
 root.render(<DemoApp />);

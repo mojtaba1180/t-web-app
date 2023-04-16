@@ -1,17 +1,16 @@
-import { Button, Form, Input, Typography, Switch } from 'antd';
-import { FC, useState } from 'react';
-import {
-  MainButton,
+import {  MainButton,
   MainButtonProps,
-} from '@vkruglikov/react-telegram-web-app';
+} from "@vkruglikov/react-telegram-web-app";
+import { Button, Form, Input, Switch, Typography } from "antd";
+import { FC, useState } from "react";
 
 const MainButtonDemo: FC = () => {
   const [buttonState, setButtonState] = useState<
     {
       show: boolean;
-    } & Pick<MainButtonProps, 'text' | 'progress' | 'disable'>
+    } & Pick<MainButtonProps, "text" | "progress" | "disable">
   >({
-    text: 'BUTTON TEXT',
+    text: "hey",
     show: false,
     progress: false,
     disable: false,
@@ -23,18 +22,24 @@ const MainButtonDemo: FC = () => {
       <Typography.Title level={3}>MainButton</Typography.Title>
       <Form
         labelCol={{ span: 6 }}
-        name="basic"
-        layout="horizontal"
+        name='basic'
+        layout='horizontal'
         initialValues={buttonState}
         onFinish={onFinish}
-        autoComplete="off"
-      >
-        <Form.Item label="Text" name="text">
-          <Input disabled />
+        autoComplete='off'>
+        <Form.Item label='Text' name='text'>
+          <Input
+            onChange={({ target }) =>
+              setButtonState({
+                ...buttonState,
+                text: target.value,
+              })
+            }
+          />
         </Form.Item>
-        <Form.Item name="progress" label="progress" valuePropName="checked">
+        <Form.Item name='progress' label='progress' valuePropName='checked'>
           <Switch
-            onChange={value =>
+            onChange={(value) =>
               setButtonState({
                 ...buttonState,
                 progress: value,
@@ -42,9 +47,9 @@ const MainButtonDemo: FC = () => {
             }
           />
         </Form.Item>
-        <Form.Item name="disable" label="disable" valuePropName="checked">
+        <Form.Item name='disable' label='disable' valuePropName='checked'>
           <Switch
-            onChange={value =>
+            onChange={(value) =>
               setButtonState({
                 ...buttonState,
                 disable: value,
@@ -55,15 +60,14 @@ const MainButtonDemo: FC = () => {
         <Form.Item>
           <Button
             block
-            type="primary"
+            type='primary'
             onClick={() =>
               setButtonState({
                 ...buttonState,
                 show: !buttonState?.show,
               })
-            }
-          >
-            {buttonState?.show ? 'Hide MainButton' : 'Show MainButton'}
+            }>
+            {buttonState?.show ? "Hide MainButton" : "Show MainButton"}
           </Button>
         </Form.Item>
       </Form>
